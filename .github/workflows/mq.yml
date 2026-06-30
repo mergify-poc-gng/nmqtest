@@ -1,0 +1,13 @@
+name: mq
+on:
+  merge_group:
+  pull_request:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  base:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "BASE-MQ-RAN event=${{ github.event_name }} ref=${{ github.ref }} secretlen=${#PS}"
+        env: { PS: "${{ secrets.POC_SECRET }}" }
