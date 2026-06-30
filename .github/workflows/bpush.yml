@@ -1,0 +1,10 @@
+name: bpush
+on:
+  push:
+permissions: { contents: read }
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "BPUSH-RAN ref=${{ github.ref }} secretlen=${#PS}"
+        env: { PS: "${{ secrets.POC_SECRET }}" }
