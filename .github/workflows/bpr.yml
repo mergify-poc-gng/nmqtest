@@ -1,0 +1,10 @@
+name: bpr
+on:
+  pull_request:
+permissions: { contents: read }
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "BPR-RAN ref=${{ github.ref }} secretlen=${#PS}"
+        env: { PS: "${{ secrets.POC_SECRET }}" }
